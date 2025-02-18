@@ -1,0 +1,32 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Deno: Run Task",
+            "request": "launch",
+            "type": "node",
+            "program": "${workspaceFolder}/${input:filename}",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "runtimeExecutable": "/Users/daisuzz/.deno/bin/deno",
+            "runtimeArgs": [
+                "run",
+                "--inspect-brk",
+                "--allow-read",
+                "--allow-net",
+                "${workspaceFolder}/${input:filename}"
+            ],
+            "attachSimplePort": 9229
+        }
+    ],
+    "inputs": [
+        {
+            "id": "filename",
+            "type": "promptString",
+            "description": "Please enter the filename to run"
+        }
+    ]
+}
