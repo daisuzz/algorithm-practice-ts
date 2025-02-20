@@ -6,7 +6,18 @@
 
 // @lc code=start
 function isPalindrome(x: number): boolean {
-    return x.toString() === x.toString().split('').reverse().join('');
+
+    const chars = x.toString()
+    let start = 0;
+    let end = chars.length - 1;
+    while(start < end) {
+        if(chars[start] !== chars[end]){
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
 };
 // @lc code=end
 
