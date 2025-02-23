@@ -7,12 +7,8 @@
 // @lc code=start
 function firstUniqChar(s: string): number {
     const map = new Map<string, number>()
-    for(let i = 0; i < s.length; i++) {
-        if(map.has(s[i])){
-            map.set(s[i], map.get(s[i])! + 1)
-        } else {
-            map.set(s[i], 1)
-        }
+    for(const c of s) {
+        map.set(c, (map.get(c) || 0) + 1)
     }
     for(let i = 0; i < s.length; i++) {
         if(map.get(s[i]) === 1) {
