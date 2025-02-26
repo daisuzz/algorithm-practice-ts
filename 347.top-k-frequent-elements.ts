@@ -6,22 +6,16 @@
 
 // @lc code=start
 function topKFrequent(nums: number[], k: number): number[] {
-    const map = new Map<number, number>();
-    for(const num of nums) {
-        map.set(num, (map.get(num) || 0) + 1)
+    // 数字と出現回数のオブジェクトを用意
+    const freq: { [key: number]: number } = {}
+    // 数字ごとの出現回数をセット
+    for (const num of nums) {
+        freq[num] = (freq[num] || 0) + 1
     }
-    const result = []
-    for(let i = 0; i < k; i++) {
-        let maxKey = 0;
-        for(const [key, value] of map) {
-            if(value > (map.get(maxKey) || 0)) {
-                maxKey = key;
-            }
-        }
-        map.delete(maxKey);
-        result.push(maxKey)
-    }
-    return result
+    return Object.entries(freq)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, k)
+        .map(([num, _]) => parseInt(num))
 };
 // @lc code=end
 
