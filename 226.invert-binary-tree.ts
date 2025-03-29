@@ -20,17 +20,44 @@
  */
 
 function invertTree(root: TreeNode | null): TreeNode | null {
+
+    // 再帰を使った解法
+    // return dfs(root)
+
+    // 幅優先探索を使った解法
+    return bfs(root)
+};
+
+function dfs(root: TreeNode | null): TreeNode | null {
     if(root === null) return null;
 
     // 左右の子ノードを再帰的に反転
-    const left = invertTree(root.left);
-    const right = invertTree(root.right);
+    const left = dfs(root.left);
+    const right = dfs(root.right);
 
     // 左右の子ノードを交換
     root.left = right
     root.right = left
 
     return root
-};
+}
+
+function bfs(root: TreeNode | null): TreeNode | null {
+    if(root === null) return null;
+
+    const queue: TreeNode[] = [root];
+
+    while(queue.length > 0) {
+        const node = queue.shift() as TreeNode;
+
+        // 左右の子ノードを交換
+        [node.left, node.right] = [node.right, node.left]
+
+        if(node.left) queue.push(node.left);
+        if(node.right) queue.push(node.right);
+    }
+
+    return root
+}
 // @lc code=end
 
